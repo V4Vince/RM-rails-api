@@ -14,9 +14,9 @@
 #
 # prop3 = Building.create("building_name" => "Woburn St", "address" => "30 Faker St", "total_units" => "", "current_insurance" => "2500", "current_taxes" => "", "user_id" => User.first.id);
 
-##UNITS###########
+#UNITS###########
 
-# unit1 = Unit.create("unit_num" => "12A", "building_id" => Building.first.id);
+unit1 = Unit.create("unit_num" => "12A", "building_id" => Building.first.id);
 unit2 = Unit.create("unit_num" => "12B", "building_id" => Building.first.id);
 
 unit3 = Unit.create("unit_num" => "1", "building_id" => Building.last.id);

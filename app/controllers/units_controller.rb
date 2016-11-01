@@ -54,6 +54,6 @@ class UnitsController < ProtectedController
     end
 
     def unit_params
-      params.require(:unit).permit(:vacant)
+      params.require(:unit).permit(:vacant, :unit_num, :building_id)
     end
 end
