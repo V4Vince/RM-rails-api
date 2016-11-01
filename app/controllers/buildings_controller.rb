@@ -1,10 +1,10 @@
-class BuildingsController < ApplicationController
+class BuildingsController < ProtectedController
   before_action :set_building, only: [:show, :update, :destroy]
 
   # GET /buildings
   # GET /buildings.json
   def index
-    @buildings = Building.all
+    @buildings = current_user.all
 
     render json: @buildings
   end
