@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20161101170920) do
     t.integer  "building_id",                null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.text     "unit_num"
   end
 
   add_index "units", ["building_id"], name: "index_units_on_building_id", using: :btree
