@@ -4,7 +4,7 @@ class BuildingsController < ProtectedController
   # GET /buildings
   # GET /buildings.json
   def index
-    @buildings = current_user.all
+    @buildings = current_user.buildings
 
     render json: @buildings
   end
