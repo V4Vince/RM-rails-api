@@ -18,7 +18,7 @@ class BuildingsController < ProtectedController
   # POST /buildings
   # POST /buildings.json
   def create
-    @building = Building.new(building_params)
+    @building = current_user.buildings.build(building_params)
 
     if @building.save
       render json: @building, status: :created, location: @building
