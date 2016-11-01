@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101154528) do
+ActiveRecord::Schema.define(version: 20161101170920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 20161101154528) do
 
   add_index "examples", ["user_id"], name: "index_examples_on_user_id", using: :btree
 
+  create_table "units", force: :cascade do |t|
+    t.boolean  "vacant",      default: true
+    t.integer  "building_id",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "units", ["building_id"], name: "index_units_on_building_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false
     t.string   "token",           null: false
@@ -54,4 +63,5 @@ ActiveRecord::Schema.define(version: 20161101154528) do
 
   add_foreign_key "buildings", "users"
   add_foreign_key "examples", "users"
+  add_foreign_key "units", "buildings"
 end
