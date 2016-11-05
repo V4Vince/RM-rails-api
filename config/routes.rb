@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  resources :units, except: [:new, :edit]
-  resources :buildings, except: [:new, :edit]
+  resources :infos, only: [:index, :show, :destroy]
+
+  resources :units, except: [:new, :edit], shallow:true do
+    resources :infos, only: [:create]
+  end
+
+  resources :buildings, except: [:new, :edit], shallow:true do
+    resources :infos, only: [:create]
+  end
+
   resources :examples, except: [:new, :edit]
   post '/sign-up' => 'users#signup'
   post '/sign-in' => 'users#signin'

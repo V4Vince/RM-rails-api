@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101170920) do
+ActiveRecord::Schema.define(version: 20161104194231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,28 @@ ActiveRecord::Schema.define(version: 20161101170920) do
 
   add_index "examples", ["user_id"], name: "index_examples_on_user_id", using: :btree
 
+  create_table "infos", force: :cascade do |t|
+    t.float    "footage"
+    t.integer  "bedrooms"
+    t.float    "bathrooms"
+    t.integer  "parking"
+    t.integer  "livingroom"
+    t.integer  "kitchen"
+    t.integer  "diningroom"
+    t.integer  "infoable_id",   null: false
+    t.string   "infoable_type", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "infos", ["infoable_type", "infoable_id"], name: "index_infos_on_infoable_type_and_infoable_id", using: :btree
+
   create_table "units", force: :cascade do |t|
     t.boolean  "vacant",      default: true
     t.integer  "building_id",                null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.text     "unit_num"
+    t.text     "unit_num",                   null: false
   end
 
   add_index "units", ["building_id"], name: "index_units_on_building_id", using: :btree
