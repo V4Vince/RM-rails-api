@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :infos, only: [:index, :show, :destroy]
+  resources :infos, only: [:destroy, :show, :update]
 
   resources :units, except: [:new, :edit], shallow:true do
     resources :infos, only: [:create]

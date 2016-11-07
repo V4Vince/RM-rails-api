@@ -16,15 +16,19 @@ class InfosController < ApplicationController
     render json: @info
   end
 
-  # POST /infos
+  # POST /units/$ID/infos
   # POST /infos.json
+  # shallow nest
   def create
-    @info = @parent.create_info(info_params)
-
-    if @info.save
-      render json: @info, status: :created, location: @info
+    if @parent.info.nil?
+      @info = @parent.create_info(info_params)
+      if @info.save
+        render json: @info, status: :created, location: @info
+      else
+        render json: @info.errors, status: :unprocessable_entity
+      end
     else
-      render json: @info.errors, status: :unprocessable_entity
+      head :no_content
     end
   end
 
