@@ -4,11 +4,12 @@ class InfosController < ApplicationController
 
   # GET /infos
   # GET /infos.json
-  def index
-    @infos = Info.all
-
-    render json: @infos
-  end
+  # Method not used
+  # def index
+  #   @infos = Info.all
+  #
+  #   render json: @infos
+  # end
 
   # GET /infos/1
   # GET /infos/1.json
