@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :advertisements, except: [:new, :edit]
   resources :infos, only: [:destroy, :show, :update]
 
   resources :units, except: [:new, :edit], shallow:true do
