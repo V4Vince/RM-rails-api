@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104194231) do
+ActiveRecord::Schema.define(version: 20161108205533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "advertisements", force: :cascade do |t|
+    t.date     "dateAvailable"
+    t.text     "leaseTerms"
+    t.integer  "current_mortgage"
+    t.integer  "current_insurance"
+    t.integer  "current_taxes"
+    t.integer  "unit_id"
+    t.integer  "building_id"
+    t.integer  "user_id",           null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "advertisements", ["building_id"], name: "index_advertisements_on_building_id", unique: true, using: :btree
+  add_index "advertisements", ["unit_id"], name: "index_advertisements_on_unit_id", unique: true, using: :btree
+  add_index "advertisements", ["user_id"], name: "index_advertisements_on_user_id", using: :btree
 
   create_table "buildings", force: :cascade do |t|
     t.string   "building_name"
@@ -78,6 +95,9 @@ ActiveRecord::Schema.define(version: 20161104194231) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["token"], name: "index_users_on_token", unique: true, using: :btree
 
+  add_foreign_key "advertisements", "buildings"
+  add_foreign_key "advertisements", "units"
+  add_foreign_key "advertisements", "users"
   add_foreign_key "buildings", "users"
   add_foreign_key "examples", "users"
   add_foreign_key "units", "buildings"
